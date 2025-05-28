@@ -27,4 +27,9 @@ public class InstructorController {
     public String eliminarInstructor(@PathVariable int id) {
         return instructorService.eliminarInstructorPorId(id);
     }
+
+    @PostMapping("/asignar-curso/{idInstructor}/{idCurso}")
+    public String asignarCursoAInstructor(@PathVariable int idInstructor, @PathVariable int idCurso) {
+        return instructorService.asignarCurso(idInstructor, idCurso);
+    }
 }

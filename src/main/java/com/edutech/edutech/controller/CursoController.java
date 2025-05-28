@@ -39,6 +39,16 @@ public class CursoController {
         return cursoService.asignarContenido(idCurso, idContenido);
     }
 
+    @PostMapping("/asignar-instructor/{idCurso}/{idInstructor}")
+    public String asignarInstructorACurso(@PathVariable int idCurso, @PathVariable int idInstructor) {
+        return cursoService.asignarInstructor(idCurso, idInstructor);
+    }
+
+    @PostMapping("/asignar-usuario/{idCurso}/{idUsuario}")
+    public String asignarUsuarioACurso(@PathVariable int idCurso, @PathVariable int idUsuario) {
+        return cursoService.asignarUsuario(idCurso, idUsuario);
+    }
+
     @DeleteMapping("/{id}")
     public String eliminarCurso(@PathVariable int id) {
         return cursoService.eliminarCursoPorId(id);

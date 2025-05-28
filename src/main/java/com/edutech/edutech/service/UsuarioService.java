@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.edutech.edutech.model.Usuario;
 import com.edutech.edutech.model.Persona;
+import com.edutech.edutech.model.Curso;
+import com.edutech.edutech.model.Perfil;
+import com.edutech.edutech.model.Preferencia;
 import com.edutech.edutech.repository.PersonaRepository;
 import com.edutech.edutech.repository.UsuarioRepository;
+import com.edutech.edutech.repository.CursoRepository;
+import com.edutech.edutech.repository.PerfilRepository;
+import com.edutech.edutech.repository.PreferenciaRepository;
 //Fernando Huamanchumo
 @Service
 public class UsuarioService {
@@ -18,6 +24,13 @@ public class UsuarioService {
 
     @Autowired
     private PersonaRepository personaRepository;
+
+    @Autowired
+    private CursoRepository cursoRepository;
+    @Autowired
+    private PerfilRepository perfilRepository;
+    @Autowired
+    private PreferenciaRepository preferenciaRepository;
 
 
     // Crear usuario con validaciones simples
@@ -78,5 +91,56 @@ public class UsuarioService {
     // Listar todos los usuarios
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    public String asignarCurso(int idUsuario, int idCurso) {
+        if (!usuarioRepository.existsById(idUsuario)) {
+            return "El usuario ingresado no existe.";
+        }
+        if (!cursoRepository.existsById(idCurso)) {
+            return "El curso ingresado no existe.";
+        }
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        Curso curso = cursoRepository.findById(idCurso).get();
+        if (usuario.getCursos().contains(curso)) {
+            return "El curso ya está asignado a este usuario.";
+        }
+        usuario.getCursos().add(curso);
+        usuarioRepository.save(usuario);
+        return "Curso asignado al usuario correctamente.";
+    }
+
+    public String asignarPerfil(int idUsuario, int idPerfil) {
+        if (!usuarioRepository.existsById(idUsuario)) {
+            return "El usuario ingresado no existe.";
+        }
+        if (!perfilRepository.existsById(idPerfil)) {
+            return "El perfil ingresado no existe.";
+        }
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        Perfil perfil = perfilRepository.findById(idPerfil).get();
+        if (usuario.getPerfiles().contains(perfil)) {
+            return "El perfil ya está asignado a este usuario.";
+        }
+        usuario.getPerfiles().add(perfil);
+        usuarioRepository.save(usuario);
+        return "Perfil asignado al usuario correctamente.";
+    }
+
+    public String asignarPreferencia(int idUsuario, int idPreferencia) {
+        if (!usuarioRepository.existsById(idUsuario)) {
+            return "El usuario ingresado no existe.";
+        }
+        if (!preferenciaRepository.existsById(idPreferencia)) {
+            return "La preferencia ingresada no existe.";
+        }
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+        Preferencia preferencia = preferenciaRepository.findById(idPreferencia).get();
+        if (usuario.getPreferencias().contains(preferencia)) {
+            return "La preferencia ya está asignada a este usuario.";
+        }
+        usuario.getPreferencias().add(preferencia);
+        usuarioRepository.save(usuario);
+        return "Preferencia asignada al usuario correctamente.";
     }
 }

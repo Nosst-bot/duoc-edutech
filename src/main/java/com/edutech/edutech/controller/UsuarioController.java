@@ -60,4 +60,19 @@ public class UsuarioController {
         return usuarioService.eliminarUsuario(mail);
     }
 
+    @PostMapping("/asignar-curso/{idUsuario}/{idCurso}")
+    public String asignarCursoAUsuario(@PathVariable int idUsuario, @PathVariable int idCurso) {
+        return usuarioService.asignarCurso(idUsuario, idCurso);
+    }
+
+    @PostMapping("/asignar-perfil/{idUsuario}/{idPerfil}")
+    public String asignarPerfilAUsuario(@PathVariable int idUsuario, @PathVariable int idPerfil) {
+        return usuarioService.asignarPerfil(idUsuario, idPerfil);
+    }
+
+    @PostMapping("/asignar-preferencia/{idUsuario}/{idPreferencia}")
+    public String asignarPreferenciaAUsuario(@PathVariable int idUsuario, @PathVariable int idPreferencia) {
+        return usuarioService.asignarPreferencia(idUsuario, idPreferencia);
+    }
+
 }
