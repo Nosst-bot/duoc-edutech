@@ -34,4 +34,9 @@ public class CursoController {
         return cursoService.crearCurso(newCurso);
     }
 
+    @PostMapping("/asignar-contenido")
+    public String asignarContenidoACurso(@RequestParam int idCurso, @RequestParam int idContenido) {
+        return cursoService.asignarContenido(idCurso, idContenido);
+    }
+
 }

@@ -1,7 +1,9 @@
 package com.edutech.edutech.service;
 
 import com.edutech.edutech.model.Curso;
+import com.edutech.edutech.model.Contenido;
 import com.edutech.edutech.repository.CursoRepository;
+import com.edutech.edutech.repository.ContenidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class CursoService {
 
     @Autowired
     private CursoRepository cursoRepository;
+
+    @Autowired
+    private ContenidoRepository contenidoRepository;
 
     public List<Curso> allCursos() {
         return cursoRepository.findAll();
@@ -43,5 +48,22 @@ public class CursoService {
 
         cursoRepository.save(newCurso);
         return "Curso creado correctamente.";
+    }
+
+    public String asignarContenido(int idCurso, int idContenido) {
+        if (!contenidoRepository.existsById(idContenido)) {
+            return "El contenido ingresado no existe.";
+        }
+        if (!cursoRepository.existsById(idCurso)) {
+            return "El curso ingresado no existe.";
+        }
+        Curso curso = cursoRepository.findById(idCurso).get();
+        Contenido contenido = contenidoRepository.findById(idContenido).get();
+        if (curso.getContenidos().contains(contenido)) {
+            return "El contenido ya está asignado a este curso.";
+        }
+        curso.getContenidos().add(contenido);
+        cursoRepository.save(curso);
+        return "Contenido asignado al curso correctamente.";
     }
 }
