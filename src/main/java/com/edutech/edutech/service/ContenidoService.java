@@ -19,9 +19,8 @@ public class ContenidoService {
     private CursoRepository cursoRepository;
 
     public List<Contenido> listarContenidos() {
-        return  contenidoRepository.findAll();
+        return contenidoRepository.findAll();
     }
-
 
     public String crearContenido(Contenido newContenido) {
         if (contenidoRepository.findByTitulo(newContenido.getTitulo()) != null) {
@@ -35,11 +34,22 @@ public class ContenidoService {
     public String asignarCurso(int idCurso, int idContenido) {
         if (!contenidoRepository.existsById(idContenido)) {
             return "El contenido ingresado no existe.";
-        } else if (!cursoRepository.existsById(idCurso)) {
-            return "El curso ingresado no existe.";
-        } else {
-        Curso curso = cursoRepository.findById(idCurso).get();
         }
+        if (!cursoRepository.existsById(idCurso)) {
+            return "El curso ingresado no existe.";
+        }
+        Curso curso = cursoRepository.findById(idCurso).get();
+
+        Contenido contenido = contenidoRepository.findById(idContenido).get();
+
+        if (curso.getContenidos().contains(contenido)) {
+            return "El contenido ya está asignado a este curso.";
+        }
+
+        curso.getContenidos().add(contenido);
+        cursoRepository.save(curso);
+
+        return "Contenido asignado al curso correctamente.";
 
     }
 }
