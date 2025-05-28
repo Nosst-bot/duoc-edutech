@@ -39,14 +39,17 @@ public class UsuarioService {
         }
 
         // Regla 3: validar que la contraseña no esté vacía
-        if (usuario.getPass() == null || usuario.getPass().isBlank()) {
+        String pass = usuario.getPass();
+        if (pass == null || pass.trim().isEmpty()) {
             return "La contraseña no puede estar vacía.";
-        }
-
+}
         // Regla 4: validar que el estado sea 'activo' o 'inactivo'
-        if (!usuario.getEstado().equalsIgnoreCase("activo") &&
-            !usuario.getEstado().equalsIgnoreCase("inactivo")) {
-            return "El estado del usuario debe ser 'activo' o 'inactivo'.";
+        String estado = usuario.getEstado();
+        if (estado == null) {
+        return "El estado no puede ser nulo.";
+        }
+        if (!estado.equals("activo") && !estado.equals("inactivo")) {
+        return "El estado del usuario debe ser 'activo' o 'inactivo'.";
         }
 
         // Asignar persona real encontrada desde la BD

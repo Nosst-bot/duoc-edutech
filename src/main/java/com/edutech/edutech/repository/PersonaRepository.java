@@ -8,5 +8,4 @@ import com.edutech.edutech.model.Persona;
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
     Persona findByRut(String rut);
 
-
 }
