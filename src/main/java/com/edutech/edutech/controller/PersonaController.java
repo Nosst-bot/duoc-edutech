@@ -42,5 +42,4 @@ public class PersonaController {
         return personaService.eliminarPorRut(rut);
 
     }
-
 }
