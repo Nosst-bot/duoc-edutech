@@ -9,7 +9,7 @@ import com.edutech.edutech.model.Usuario;
 import com.edutech.edutech.model.Persona;
 import com.edutech.edutech.repository.PersonaRepository;
 import com.edutech.edutech.repository.UsuarioRepository;
-
+//Fernando Huamanchumo
 @Service
 public class UsuarioService {
 

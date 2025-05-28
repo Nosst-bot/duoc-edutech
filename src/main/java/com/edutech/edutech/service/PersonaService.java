@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.edutech.edutech.model.Persona;
 import com.edutech.edutech.repository.PersonaRepository;
-
+//Fernando Huamanchumo
 @Service
 public class PersonaService {
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.edutech.edutech.model.Preferencia;
 import com.edutech.edutech.repository.PreferenciaRepository;
-
+//edgar morales
 @Service
 public class PreferenciaService {
 @Autowired
