@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.List;
 
 
 @Entity
@@ -14,6 +17,9 @@ public class Preferencia {
     private int id;
 
     private String descripcion;
+
+    @ManyToMany(mappedBy = "preferencias")
+    private List<Usuario> usuarios;
 
     public Preferencia() {}
 
@@ -35,6 +41,14 @@ public class Preferencia {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
 }

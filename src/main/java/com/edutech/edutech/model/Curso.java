@@ -17,6 +17,11 @@ public class Curso {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
     private List<Contenido> contenidos;
 
+    @ManyToMany
+    private List<Instructor> instructores;
+    @ManyToMany(mappedBy = "cursos")
+    private List<Usuario> usuarios;
+
     public Curso() {
     }
 
@@ -66,5 +71,21 @@ public class Curso {
 
     public void setContenidos(List<Contenido> contenidos) {
         this.contenidos = contenidos;
+    }
+
+    public List<Instructor> getInstructores() {
+        return instructores;
+    }
+
+    public void setInstructores(List<Instructor> instructores) {
+        this.instructores = instructores;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

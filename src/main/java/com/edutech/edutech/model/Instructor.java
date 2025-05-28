@@ -1,6 +1,8 @@
 package com.edutech.edutech.model;
 
 import jakarta.persistence.*;
+import java.util.List;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Instructor {
@@ -13,6 +15,9 @@ public class Instructor {
     private String nombre;
     private String apellido;
     private String estado;
+
+    @ManyToMany(mappedBy = "instructores")
+    private List<Curso> cursos;
 
     public Instructor() {}
 
@@ -31,4 +36,6 @@ public class Instructor {
     public void setApellido(String apellido) { this.apellido = apellido; }
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
+    public List<Curso> getCursos() { return cursos; }
+    public void setCursos(List<Curso> cursos) { this.cursos = cursos; }
 }

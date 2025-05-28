@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.Set;
 
 
 @Entity
@@ -16,6 +19,9 @@ public class Perfil {
     private String tag; // Ej: "ADMIN", "CLIENTE"
 
     private String nombre;
+
+    @ManyToMany(mappedBy = "perfiles")
+    private Set<Usuario> usuarios;
 
     public Perfil() {}
 
@@ -49,4 +55,7 @@ public class Perfil {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public Set<Usuario> getUsuarios() { return usuarios; }
+    public void setUsuarios(Set<Usuario> usuarios) { this.usuarios = usuarios; }
 }

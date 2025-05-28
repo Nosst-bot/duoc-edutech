@@ -8,10 +8,8 @@ public class Resena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idResena;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuarioCurso")
-    private UsuarioCurso usuarioCurso;
-
+    private String usuarioMail;
+    private String cursoSigla;
     private String descripcion;
     private String fecha;
 
@@ -20,8 +18,10 @@ public class Resena {
     // Getters y setters
     public int getIdResena() { return idResena; }
     public void setIdResena(int idResena) { this.idResena = idResena; }
-    public UsuarioCurso getUsuarioCurso() { return usuarioCurso; }
-    public void setUsuarioCurso(UsuarioCurso usuarioCurso) { this.usuarioCurso = usuarioCurso; }
+    public String getUsuarioMail() { return usuarioMail; }
+    public void setUsuarioMail(String usuarioMail) { this.usuarioMail = usuarioMail; }
+    public String getCursoSigla() { return cursoSigla; }
+    public void setCursoSigla(String cursoSigla) { this.cursoSigla = cursoSigla; }
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
     public String getFecha() { return fecha; }

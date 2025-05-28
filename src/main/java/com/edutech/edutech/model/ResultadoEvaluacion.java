@@ -8,9 +8,8 @@ public class ResultadoEvaluacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idResultadoEvaluacion;
 
-    @ManyToOne
-    @JoinColumn(name = "idUsuarioCurso")
-    private UsuarioCurso usuarioCurso;
+    private String usuarioMail;
+    private String cursoSigla;
 
     @ManyToOne
     @JoinColumn(name = "idEvaluacion")
@@ -23,8 +22,10 @@ public class ResultadoEvaluacion {
     // Getters y setters
     public int getIdResultadoEvaluacion() { return idResultadoEvaluacion; }
     public void setIdResultadoEvaluacion(int idResultadoEvaluacion) { this.idResultadoEvaluacion = idResultadoEvaluacion; }
-    public UsuarioCurso getUsuarioCurso() { return usuarioCurso; }
-    public void setUsuarioCurso(UsuarioCurso usuarioCurso) { this.usuarioCurso = usuarioCurso; }
+    public String getUsuarioMail() { return usuarioMail; }
+    public void setUsuarioMail(String usuarioMail) { this.usuarioMail = usuarioMail; }
+    public String getCursoSigla() { return cursoSigla; }
+    public void setCursoSigla(String cursoSigla) { this.cursoSigla = cursoSigla; }
     public Evaluacion getEvaluacion() { return evaluacion; }
     public void setEvaluacion(Evaluacion evaluacion) { this.evaluacion = evaluacion; }
     public double getCalificacion() { return calificacion; }

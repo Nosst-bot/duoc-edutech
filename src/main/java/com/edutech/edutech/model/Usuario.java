@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +23,12 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "idPersona", unique = true)
     private Persona persona;
+    @ManyToMany
+    private List<Perfil> perfiles;
+    @ManyToMany
+    private List<Preferencia> preferencias;
+    @ManyToMany
+    private List<Curso> cursos;
 
     public Usuario() {}
 
@@ -60,6 +68,12 @@ public class Usuario {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+    public List<Perfil> getPerfiles() { return perfiles; }
+    public void setPerfiles(List<Perfil> perfiles) { this.perfiles = perfiles; }
+    public List<Preferencia> getPreferencias() { return preferencias; }
+    public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
+    public List<Curso> getCursos() { return cursos; }
+    public void setCursos(List<Curso> cursos) { this.cursos = cursos; }
 
 
 
