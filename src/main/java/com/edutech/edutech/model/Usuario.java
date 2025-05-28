@@ -9,6 +9,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Usuario {
@@ -28,6 +30,7 @@ public class Usuario {
     @ManyToMany
     private List<Preferencia> preferencias;
     @ManyToMany
+    @JsonBackReference
     private List<Curso> cursos;
 
     public Usuario() {}

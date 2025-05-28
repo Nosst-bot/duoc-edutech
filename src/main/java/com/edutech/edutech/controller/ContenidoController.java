@@ -23,4 +23,9 @@ public class ContenidoController {
     public String crear(@RequestBody Contenido contenido) {
         return contenidoService.crearContenido(contenido);
     }
+
+    @DeleteMapping("/{id}")
+    public String eliminarContenido(@PathVariable int id) {
+        return contenidoService.eliminarContenidoPorId(id);
+    }
 }

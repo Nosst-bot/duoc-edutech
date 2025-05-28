@@ -2,6 +2,9 @@ package com.edutech.edutech.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -17,6 +20,7 @@ public class Instructor {
     private String estado;
 
     @ManyToMany(mappedBy = "instructores")
+    @JsonBackReference
     private List<Curso> cursos;
 
     public Instructor() {}

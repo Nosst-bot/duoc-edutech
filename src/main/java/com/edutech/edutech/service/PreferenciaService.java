@@ -40,4 +40,13 @@ public class PreferenciaService {
     public List<Preferencia> listarPreferencias() {
         return preferenciaRepository.findAll();
     }
+
+    // Eliminar preferencia por ID
+    public String eliminarPreferenciaPorId(int id) {
+        if (!preferenciaRepository.existsById(id)) {
+            return "No se encontró una preferencia con ese ID.";
+        }
+        preferenciaRepository.deleteById(id);
+        return "Preferencia eliminada correctamente.";
+    }
 }

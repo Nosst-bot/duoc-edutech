@@ -36,4 +36,13 @@ public class PerfilService {
     public List<Perfil> listarPerfiles() {
         return perfilRepository.findAll();
     }
+
+
+    public String eliminarPerfilPorId(int id) {
+        if (!perfilRepository.existsById(id)) {
+            return "No se encontró un perfil con ese ID.";
+        }
+        perfilRepository.deleteById(id);
+        return "Perfil eliminado correctamente.";
+    }
 }

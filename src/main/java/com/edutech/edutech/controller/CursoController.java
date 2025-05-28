@@ -34,9 +34,14 @@ public class CursoController {
         return cursoService.crearCurso(newCurso);
     }
 
-    @PostMapping("/asignar-contenido")
-    public String asignarContenidoACurso(@RequestParam int idCurso, @RequestParam int idContenido) {
+    @PostMapping("/asignar-contenido/{idCurso}/{idContenido}")
+    public String asignarContenidoACurso(@PathVariable int idCurso, @PathVariable int idContenido) {
         return cursoService.asignarContenido(idCurso, idContenido);
+    }
+
+    @DeleteMapping("/{id}")
+    public String eliminarCurso(@PathVariable int id) {
+        return cursoService.eliminarCursoPorId(id);
     }
 
 }

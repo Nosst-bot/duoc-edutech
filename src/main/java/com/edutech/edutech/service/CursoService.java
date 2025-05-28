@@ -26,7 +26,7 @@ public class CursoService {
 
     public List<Curso> buscarPorId(int id) {
         List<Curso> list = new ArrayList<>();
-        if(cursoRepository.findById(id).isPresent()) {
+        if (cursoRepository.findById(id).isPresent()) {
             list.add(cursoRepository.findById(id).get());
         }
 
@@ -35,7 +35,7 @@ public class CursoService {
 
     public List<Curso> buscarPorSigla(String sigla) {
         List<Curso> list = new ArrayList<>();
-        if(cursoRepository.findBySigla(sigla) != null) {
+        if (cursoRepository.findBySigla(sigla) != null) {
             list.add(cursoRepository.findBySigla(sigla));
         }
 
@@ -43,7 +43,7 @@ public class CursoService {
     }
 
     public String crearCurso(Curso newCurso) {
-        if(cursoRepository.findBySigla(newCurso.getSigla()) != null) {
+        if (cursoRepository.findBySigla(newCurso.getSigla()) != null) {
             return "El curso con esa sigla ya existe.";
         }
 
@@ -58,13 +58,24 @@ public class CursoService {
         if (!cursoRepository.existsById(idCurso)) {
             return "El curso ingresado no existe.";
         }
+
         Curso curso = cursoRepository.findById(idCurso).get();
         Contenido contenido = contenidoRepository.findById(idContenido).get();
+
         if (curso.getContenidos().contains(contenido)) {
             return "El contenido ya está asignado a este curso.";
         }
+        contenido.setCurso(curso);
         curso.getContenidos().add(contenido);
-        cursoRepository.save(curso);
+        contenidoRepository.save(contenido);
         return "Contenido asignado al curso correctamente.";
+    }
+
+    public String eliminarCursoPorId(int id) {
+        if (!cursoRepository.existsById(id)) {
+            return "No se encontró un curso con ese ID.";
+        }
+        cursoRepository.deleteById(id);
+        return "Curso eliminado correctamente.";
     }
 }

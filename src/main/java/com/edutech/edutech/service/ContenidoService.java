@@ -24,4 +24,12 @@ public class ContenidoService {
         contenidoRepository.save(newContenido);
         return "Contenido creado con exito";
     }
+
+    public String eliminarContenidoPorId(int id) {
+        if (!contenidoRepository.existsById(id)) {
+            return "No se encontró un contenido con ese ID.";
+        }
+        contenidoRepository.deleteById(id);
+        return "Contenido eliminado correctamente.";
+    }
 }

@@ -23,4 +23,12 @@ public class InstructorService {
     public List<Instructor> listarInstructores() {
         return instructorRepository.findAll();
     }
+
+    public String eliminarInstructorPorId(int id) {
+        if (!instructorRepository.existsById(id)) {
+            return "No se encontró un instructor con ese ID.";
+        }
+        instructorRepository.deleteById(id);
+        return "Instructor eliminado correctamente.";
+    }
 }

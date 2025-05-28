@@ -22,4 +22,9 @@ public class InstructorController {
     public List<Instructor> listarInstructores() {
         return instructorService.listarInstructores();
     }
+
+    @DeleteMapping("/{id}")
+    public String eliminarInstructor(@PathVariable int id) {
+        return instructorService.eliminarInstructorPorId(id);
+    }
 }
