@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+//Probando que llega al repositorio remoto
+
 @Entity
 public class Curso {
     @Id
