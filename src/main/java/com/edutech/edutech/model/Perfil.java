@@ -8,6 +8,8 @@ import jakarta.persistence.ManyToMany;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Perfil {
@@ -21,6 +23,7 @@ public class Perfil {
     private String nombre;
 
     @ManyToMany(mappedBy = "perfiles")
+    @JsonIgnore // para evitar recursión infinita en JSON
     private Set<Usuario> usuarios;
 
     public Perfil() {}

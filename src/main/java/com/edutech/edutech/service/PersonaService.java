@@ -42,10 +42,15 @@ public class PersonaService {
 
         if (persona == null) {
             return "No se puede eliminar. No existe persona con RUT: " + rut;
-        }else{
-            personaRepository.delete(persona);
-            return "Persona con RUT: " + rut + " eliminada correctamente. ";
         }
+        
+        if(persona.getUsuario() != null){
+            return "No se puede eliminar. Esta persona tiene un usuario asociado.";
+        }
+
+        personaRepository.delete(persona);
+        return "Persona eliminada correctamente";
+
     }
     public List<Persona> listar(){
         return personaRepository.findAll();

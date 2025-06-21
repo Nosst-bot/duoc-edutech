@@ -37,7 +37,7 @@ public class PersonaController {
         return personaService.buscarPorRut(rut);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{rut}")
     public String eliminarPorRut(@PathVariable String rut){
         return personaService.eliminarPorRut(rut);
 

@@ -4,14 +4,14 @@ public class UsuarioDTO {
 
     private int idUsuario;
     private String mail;
-    private String pass;
+    private String estado;
     private String nombreCompleto;
 
     
-    public UsuarioDTO(int idUsuario, String mail, String pass, String nombreCompleto) {
+    public UsuarioDTO(int idUsuario, String mail, String estado, String nombreCompleto) {
         this.idUsuario = idUsuario;
         this.mail = mail;
-        this.pass = pass;
+        this.estado = estado;
         this.nombreCompleto = nombreCompleto;
     }
 
@@ -36,13 +36,13 @@ public class UsuarioDTO {
     }
 
 
-    public String getPass() {
-        return pass;
+    public String getEstado() {
+        return estado;
     }
 
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 

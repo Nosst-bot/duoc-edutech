@@ -1,6 +1,6 @@
 package com.edutech.edutech.model;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Persona {
     private String apellido;
     private String mail;
 
-    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "persona")
     private Usuario usuario;
 
     public Persona(int idPersona, String rut, String nombre, String apellido, String mail) {
@@ -65,6 +65,14 @@ public class Persona {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public Usuario getUsuario(){
+        return usuario;
+    }
     
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
+
+    }
 
 }
