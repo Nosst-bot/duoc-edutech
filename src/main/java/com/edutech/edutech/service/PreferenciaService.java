@@ -1,6 +1,7 @@
 package com.edutech.edutech.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,10 +44,17 @@ public class PreferenciaService {
 
     // Eliminar preferencia por ID
     public String eliminarPreferenciaPorId(int id) {
-        if (!preferenciaRepository.existsById(id)) {
+        Optional<Preferencia> preferenciaOptional = preferenciaRepository.findById(id);
+        if (preferenciaOptional.isEmpty()) {
             return "No se encontró una preferencia con ese ID.";
         }
-        preferenciaRepository.deleteById(id);
-        return "Preferencia eliminada correctamente.";
-    }
+
+        Preferencia preferencia = preferenciaOptional.get();
+        if (!preferencia.getUsuarios().isEmpty()) {
+            return "No se puede eliminar: la preferencia está asignada a usuarios.";
+        }
+
+        preferenciaRepository.delete(preferencia);
+            return "Preferencia eliminada correctamente.";
+        }
 }

@@ -1,6 +1,7 @@
 package com.edutech.edutech.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,17 @@ public class PerfilService {
 
 
     public String eliminarPerfilPorId(int id) {
-        if (!perfilRepository.existsById(id)) {
-            return "No se encontró un perfil con ese ID.";
+        Optional<Perfil> perfilOptional = perfilRepository.findById(id);
+        if (perfilOptional.isEmpty()) {
+        return "No se encontró un perfil con ese ID.";
         }
+
+        Perfil perfil = perfilOptional.get();
+
+        if (!perfil.getUsuarios().isEmpty()) {
+        return "No se puede eliminar: el perfil está asignado a uno o más usuarios.";
+    }
+        
         perfilRepository.deleteById(id);
         return "Perfil eliminado correctamente.";
     }

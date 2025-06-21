@@ -1,5 +1,6 @@
 package com.edutech.edutech.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
+// Verificar si la entidad Usuario debe ser la entidad principal o no
 @Entity
 public class Usuario {
 
@@ -22,13 +23,17 @@ public class Usuario {
     private String mail;
     private String pass;
     private String estado;
-    @OneToOne
-    @JoinColumn(name = "idPersona", unique = true)
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idPersona",referencedColumnName = "idPersona", unique = true)
     private Persona persona;
+
     @ManyToMany
     private List<Perfil> perfiles;
+
     @ManyToMany
     private List<Preferencia> preferencias;
+
     @ManyToMany
     @JsonBackReference
     private List<Curso> cursos;
@@ -77,8 +82,4 @@ public class Usuario {
     public void setPreferencias(List<Preferencia> preferencias) { this.preferencias = preferencias; }
     public List<Curso> getCursos() { return cursos; }
     public void setCursos(List<Curso> cursos) { this.cursos = cursos; }
-
-
-
-    
 }

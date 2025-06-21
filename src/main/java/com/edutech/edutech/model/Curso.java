@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+//Probando que llega al repositorio remoto
+// Se deberia tener como entidad principal al curso? o al usuario?
 @Entity
 public class Curso {
     @Id

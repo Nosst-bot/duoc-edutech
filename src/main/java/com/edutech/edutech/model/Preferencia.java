@@ -7,7 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
-import java.util.List;
+
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -19,7 +22,8 @@ public class Preferencia {
     private String descripcion;
 
     @ManyToMany(mappedBy = "preferencias")
-    private List<Usuario> usuarios;
+    @JsonIgnore
+    private Set<Usuario> usuarios;
 
     public Preferencia() {}
 
@@ -43,11 +47,11 @@ public class Preferencia {
         this.descripcion = descripcion;
     }
 
-    public List<Usuario> getUsuarios() {
+    public Set<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
+    public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 
